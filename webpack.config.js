@@ -20,9 +20,9 @@ module.exports = {
     module: {
         //加载器配置
         loaders: [
-            { test: /\.css$/, loader: 'style!css' },
-            { test: /\.js$/, loader: 'babel', exclude: /node_modules/},
-            { test: /\.less$/, loader: 'style!css!less'}
+            { test: /\.css$/, loader: 'style-loader!css-loader' },
+            { test: /\.js$/, loader: 'babel-loader', exclude: /node_modules/},
+            { test: /\.less$/, loader: 'style-loader!css-loader!less-loader'}
         ]
     },
 };
