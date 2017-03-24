@@ -22,7 +22,7 @@ module.exports = {
         loaders: [
             { test: /\.css$/, loader: 'style-loader!css-loader' },
             { test: /\.js$/, loader: 'babel-loader', exclude: /node_modules/},
-            { test: /\.less$/, loader: 'style-loader!css-loader!less-loader'}
+            { test: /\.styl$/, exclude: /node_modules/, loader: "style-loader!css-loader!stylus-loader"}
         ]
     },
 };
