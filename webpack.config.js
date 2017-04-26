@@ -1,5 +1,6 @@
-var webpack = require('webpack');
+var webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const path = require('path')
 
 module.exports = {
     //插件项
@@ -14,7 +15,7 @@ module.exports = {
     },
     //入口文件输出配置
     output: {
-        path: 'static',
+        path: path.resolve(__dirname, 'static'),
         filename: 'app.js'
     },
     module: {

@@ -5,7 +5,7 @@ import ChessBoard from './components/chessboard'
 
 ReactDom.render(
   <div>
-  <ChessBoard/>
+  <ChessBoard width={3} height={3} number={3}/>
   </div>,
   document.getElementById('app')
 )
