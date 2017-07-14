@@ -1,14 +1,13 @@
 import '../../stylus/chessboard.styl'
 import React from 'react'
-import Chess from '../chess/index.js'
 import Cell from '../cell/index.js'
 
 export default class ChessBoard extends React.Component {
   constructor(props, context) {
     super(props, context)
-    var arr = new Array(this.props.width)
-    for(var x=0;x<this.props.width;x++){
-      arr[x] = new Array(this.props.height).fill(null)
+    let arr = new Array(this.props.height)
+    for(var x=0;x<this.props.height;x++){
+      arr[x] = new Array(this.props.width).fill(null)
     }
     this.state = {
       content: arr,
@@ -18,8 +17,8 @@ export default class ChessBoard extends React.Component {
   }
   handleClick = (x,y) => {
     return e => {
-      var content = this.state.content.slice()
-      var chess = this.state.chess
+      let content = this.state.content.slice()
+      let chess = this.state.chess
       if(!content[x][y]){
         content[x][y] = this.state.chess;
         (chess == 'o') ? (chess = 'x') : (chess = 'o');
@@ -33,10 +32,10 @@ export default class ChessBoard extends React.Component {
   }
   amount = (horizontal,verital,numX,numY,direction) => {
     const arr = this.state.content
-    var sideX
-    var sideY
-    if(numX == -1){sideX = -1}else{sideX = this.props.width}
-    if(numY == -1){sideY = -1}else{sideY = this.props.height}
+    let sideX
+    let sideY
+    if(numX == -1){sideX = -1}else{sideX = this.props.height}
+    if(numY == -1){sideY = -1}else{sideY = this.props.width}
     console.log(sideX,sideY);
     while((horizontal + numX !== sideX) && (verital + numY !== sideY)){
       if(arr[horizontal + numX][verital + numY] == arr[horizontal][verital]){
@@ -52,10 +51,10 @@ export default class ChessBoard extends React.Component {
   }
   judge = (x,y) => {
     const arr = this.state.content;
-    var h = x
-    var v = y
-    var tl = 0 , t = 0 , tr = 0 , l = 0 , r = 0 , bl = 0 , b = 0 , br = 0;
-    var all = true;
+    const h = x
+    const v = y
+    let tl = 0 , t = 0 , tr = 0 , l = 0 , r = 0 , bl = 0 , b = 0 , br = 0;
+    let all = true;
     tl = this.amount(h,v,-1,-1,tl)
     t = this.amount(h,v,-1,0,t)
     tr = this.amount(h,v,-1,1,tr)
@@ -93,7 +92,11 @@ export default class ChessBoard extends React.Component {
     return (
       <div>
         <div className="box" style={{width:this.props.width*40+'px'}}>
-          {this.state.content.map((itemX,x)=> itemX.map((itemY,y)=> <Cell key={x+'-'+y} x={x} y={y} item={this.state.content[x][y]} onClick={this.handleClick(x,y)}/>))}
+          {this.state.content.map((itemX,x)=>
+            itemX.map((itemY,y)=>
+              <Cell key={x+'-'+y} x={x} y={y} item={this.state.content[x][y]} onClick={this.handleClick(x,y)}/>
+            )
+          )}
 
         </div>
         <p>{this.state.mess}</p>
