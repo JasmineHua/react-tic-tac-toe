@@ -11,6 +11,7 @@ export default class SelectSize extends React.Component {
     }
   }
   handleInputChange = (event) => {
+    console.log(event);
     const target = event.target;
     const value = target.type === 'checkbox' ? target.checked : target.value;
     const name = target.name;
@@ -22,9 +23,9 @@ export default class SelectSize extends React.Component {
   render() {
     return (
       <div>
-        <input type="text" value={this.state.width} onChange={this.handleInputChange} />
-        <input type="text" value={this.state.height} onChange={this.handleInputChange} />
-        <input type="text" value={this.state.number} onChange={this.handleInputChange} />
+        <input type="text" name="width" value={this.state.width} onChange={this.handleInputChange} />
+        <input type="text" name="height" value={this.state.height} onChange={this.handleInputChange} />
+        <input type="text" name="number" value={this.state.number} onChange={this.handleInputChange} />
         <ChessBoard width={this.state.width} height={this.state.height} number={this.state.number}/>
       </div>
     );

@@ -5,14 +5,21 @@ import Cell from '../cell/index.js'
 export default class ChessBoard extends React.Component {
   constructor(props, context) {
     super(props, context)
-    let arr = new Array(this.props.height)
-    for(var x=0;x<this.props.height;x++){
-      arr[x] = new Array(this.props.width).fill(null)
-    }
     this.state = {
-      content: arr,
+      content: [],
       chess: 'o',
       mess:''
+    }
+  }
+  componentWillMount = () =>{
+    if(this.props.width&&this.props.height){
+      let arr = new Array(this.props.height)
+      for(let x=0;x<this.props.height;x++){
+        arr[x] = new Array(this.props.width).fill(null)
+      }
+      this.setState({
+        content:arr
+      })
     }
   }
   handleClick = (x,y) => {
